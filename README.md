@@ -37,12 +37,7 @@
 
 See the [GitHub releases page](https://github.com/UniversalViewer/UniversalViewer/releases).
 
-## Development
-
-The most up-to-date code can usually be found on the `dev` branch.
-Please see the [wiki](https://github.com/UniversalViewer/UniversalViewer/wiki) for instructions on how to customise the viewer for your own projects.
-
-### First Time Setup
+## First Time Setup
 
 All command-line operations for building the UV are scripted using [Grunt](http://gruntjs.com/) which is based on [Node.js](http://nodejs.org/). To get set up:
 
@@ -71,7 +66,9 @@ All command-line operations for building the UV are scripted using [Grunt](http:
 
     `npm install`
 
-### Debug Builds
+> If switching between branches, ensure that you check out the correct branch in the `examples` sub-repository too. By default this should be `gh-pages`.
+
+## Debug Builds
 
 To build the debug version of the viewer, just run (on the command line, in the `universalviewer` folder):
 
@@ -79,13 +76,13 @@ To build the debug version of the viewer, just run (on the command line, in the 
 
 This will compile the [.less](http://lesscss.org) files into .css and [.ts](http://typescriptlang.org) files into .js.
 
-### Distribution Builds
+## Distribution Builds
 
 To build the distribution version of the UV, just run (on the command line, in the `universalviewer` folder):
 
     grunt build --dist
 
-### Examples
+## Examples
 
 To view the examples run:
 

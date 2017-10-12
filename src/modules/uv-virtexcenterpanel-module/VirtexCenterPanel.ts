@@ -30,13 +30,25 @@ export class VirtexCenterPanel extends CenterPanel {
         this.$navigation = $('<div class="navigation"></div>');
         this.$content.prepend(this.$navigation);
 
-        this.$zoomInButton = $('<button class="imageBtn zoomIn" title="' + this.content.zoomIn + '"><i></i></button>');
+        this.$zoomInButton = $(`
+          <button class="btn imageBtn zoomIn" title="${this.content.zoomIn}">
+            <i class="uv-icon-zoom-in" aria-hidden="true"></i>
+          </button>
+        `);
         this.$navigation.append(this.$zoomInButton);
 
-        this.$zoomOutButton = $('<button class="imageBtn zoomOut" title="' + this.content.zoomOut + '"><i></i></button>');
+        this.$zoomOutButton = $(`
+          <button class="btn imageBtn zoomOut" title="${this.content.zoomOut}">
+            <i class="uv-icon-zoom-out" aria-hidden="true"></i>
+          </button>
+        `);
         this.$navigation.append(this.$zoomOutButton);
 
-        this.$vrButton = $('<button class="imageBtn vr" title="' + this.content.vr + '"><i></i></button>');
+        this.$vrButton = $(`
+          <button class="btn imageBtn vr" title="${this.content.vr}">
+            <i class="uv-icon-vr" aria-hidden="true"></i>
+          </button>
+        `);
         this.$navigation.append(this.$vrButton);
 
         this.$viewport = $('<div class="virtex"></div>');
@@ -81,14 +93,22 @@ export class VirtexCenterPanel extends CenterPanel {
             let mediaUri: string | null = null;
             let canvas: Manifesto.ICanvas = this.extension.helper.getCurrentCanvas();
             const formats: Manifesto.IAnnotationBody[] | null = this.extension.getMediaFormats(canvas);
+            let resourceType: Manifesto.MediaType | null = null;
+            // default to threejs format.
+            let fileType: Virtex.FileType = new Virtex.FileType("application/vnd.threejs+json");
 
             if (formats && formats.length) {
                 mediaUri = formats[0].id;
+                resourceType = formats[0].getFormat();
             } else {
                 mediaUri = canvas.id;
             }
 
-            const isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
+            if (resourceType) {
+                fileType = new Virtex.FileType(resourceType.toString());
+            }
+
+            const isAndroid: boolean = navigator.userAgent.toLowerCase().indexOf("android") > -1;
 
             this.viewport = new Virtex.Viewport({
                 target: this.$viewport[0],
@@ -96,7 +116,7 @@ export class VirtexCenterPanel extends CenterPanel {
                     antialias: !isAndroid,
                     file: mediaUri,
                     fullscreenEnabled: false,
-                    type: new Virtex.FileType("application/vnd.threejs+json"),
+                    type: fileType,
                     showStats: this.options.showStats
                 }
             });

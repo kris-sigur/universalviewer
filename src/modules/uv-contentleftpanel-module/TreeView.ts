@@ -1,5 +1,5 @@
+import {BaseEvents} from "../uv-shared-module/BaseEvents";
 import {BaseView} from "../uv-shared-module/BaseView";
-import {Events} from "../../extensions/uv-seadragon-extension/Events";
 import ITreeNode = Manifold.ITreeNode;
 
 export class TreeView extends BaseView {
@@ -28,22 +28,17 @@ export class TreeView extends BaseView {
             data: this.treeData
         });
 
-        // todo: casting as <any> is necessary because IBaseComponent doesn't implement ITinyEmitter
-        // it is mixed-in a runtime. figure out how to add .on etc to IBaseComponent without needing
-        // to implement it in BaseComponent.
+        this.treeComponent.on('treeNodeSelected', function(node: ITreeNode) {
+            $.publish(BaseEvents.TREE_NODE_SELECTED, [node]);
+        }, false);
 
-        (<any>this.treeComponent).on('treeNodeSelected', function(node: ITreeNode) {
-            $.publish(Events.TREE_NODE_SELECTED, [node]);
-        });
-
-        (<any>this.treeComponent).on('treeNodeMultiSelected', function(node: ITreeNode) {
-            $.publish(Events.TREE_NODE_MULTISELECTED, [node]);
-        });
+        this.treeComponent.on('treeNodeMultiSelected', function(node: ITreeNode) {
+            $.publish(BaseEvents.TREE_NODE_MULTISELECTED, [node]);
+        }, false);
     }
 
     public databind(): void {
-        this.treeComponent.options.data = this.treeData;
-        this.treeComponent.set(new Object()); // todo: should be passing options.data
+        this.treeComponent.set(this.treeData);
         this.resize();
     }
 

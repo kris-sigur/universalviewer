@@ -1,5 +1,4 @@
 import {BaseEvents} from "../uv-shared-module/BaseEvents";
-import {Events} from "../../extensions/uv-seadragon-extension/Events";
 import {GalleryView} from "./GalleryView";
 import {ISeadragonExtension} from "../../extensions/uv-seadragon-extension/ISeadragonExtension";
 import {LeftPanel} from "../uv-shared-module/LeftPanel";
@@ -54,7 +53,7 @@ export class ContentLeftPanel extends LeftPanel {
             this.databind();
         });
 
-        $.subscribe(Events.GALLERY_THUMB_SELECTED, () => {
+        $.subscribe(BaseEvents.GALLERY_THUMB_SELECTED, () => {
             this.collapseFull();
         });
 
@@ -169,13 +168,13 @@ export class ContentLeftPanel extends LeftPanel {
         this.$treeButton.onPressed(() => {
             this.openTreeView();
 
-            $.publish(Events.OPEN_TREE_VIEW);
+            $.publish(BaseEvents.OPEN_TREE_VIEW);
         });
 
         this.$thumbsButton.onPressed(() => {
             this.openThumbsView();
 
-            $.publish(Events.OPEN_THUMBS_VIEW);
+            $.publish(BaseEvents.OPEN_THUMBS_VIEW);
         });
 
         this.setTitle(this.content.title);
@@ -368,10 +367,12 @@ export class ContentLeftPanel extends LeftPanel {
                 // find the thumb with the same canvasIndex and add the searchResult
                 let thumb: IThumb = thumbs.en().where(t => t.index === searchResult.canvasIndex).first();
 
-                // clone the data so searchResults isn't persisted on the canvas.
-                let data = $.extend(true, {}, thumb.data);
-                data.searchResults = searchResult.rects.length;
-                thumb.data = data;
+                if (thumb) {
+                    // clone the data so searchResults isn't persisted on the canvas.
+                    let data = $.extend(true, {}, thumb.data);
+                    data.searchResults = searchResult.rects.length;
+                    thumb.data = data;
+                }
             }
 
         }
@@ -388,7 +389,7 @@ export class ContentLeftPanel extends LeftPanel {
         this.databindGalleryView();
     }
 
-    databindGalleryView(): void{
+    databindGalleryView(): void {
         if (!this.galleryView) return;
         this.galleryView.galleryData = this.getGalleryData();
         this.galleryView.databind();
@@ -465,7 +466,7 @@ export class ContentLeftPanel extends LeftPanel {
         }
     }
 
-    defaultToThumbsView(): boolean{
+    defaultToThumbsView(): boolean {
 
         const defaultToTreeEnabled: boolean = Utils.Bools.getBool(this.config.options.defaultToTreeEnabled, false);
         const defaultToTreeIfGreaterThan: number = this.config.options.defaultToTreeIfGreaterThan || 0;
@@ -562,7 +563,7 @@ export class ContentLeftPanel extends LeftPanel {
 
         this.resize();
 
-        if (this.isFullyExpanded){
+        if (this.isFullyExpanded) {
             this.thumbsView.hide();
             if (this.galleryView) this.galleryView.show();
             if (this.galleryView) this.galleryView.resize();
@@ -601,7 +602,7 @@ export class ContentLeftPanel extends LeftPanel {
 
                 const range: Manifesto.IRange | null = this.extension.getCurrentCanvasRange();
 
-                if (range && range.treeNode){
+                if (range && range.treeNode) {
                     node = this.treeView.getNodeById(range.treeNode.id);
                 }
             }

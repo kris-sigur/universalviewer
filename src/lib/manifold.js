@@ -1,4 +1,4 @@
-// manifold v1.2.2 https://github.com/viewdir/manifold#readme
+// manifold v1.2.8 https://github.com/viewdir/manifold#readme
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.manifold = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
 ///<reference path="../node_modules/typescript/lib/lib.es6.d.ts"/> 
@@ -446,17 +446,15 @@ var Manifold;
         Helper.prototype.getCurrentCanvas = function () {
             return this.getCurrentSequence().getCanvasByIndex(this.canvasIndex);
         };
-        Helper.prototype.getCurrentElement = function () {
-            return this.getCanvasByIndex(this.canvasIndex);
-        };
         Helper.prototype.getCurrentSequence = function () {
             return this.getSequenceByIndex(this.sequenceIndex);
         };
-        Helper.prototype.getElementType = function (element) {
-            if (!element) {
-                element = this.getCurrentCanvas();
+        Helper.prototype.getDescription = function () {
+            var description = this.manifest.getDescription();
+            if (description) {
+                return Manifesto.TranslationCollection.getValue(description);
             }
-            return element.getType();
+            return null;
         };
         Helper.prototype.getFirstPageIndex = function () {
             return 0;
@@ -651,10 +649,6 @@ var Manifold;
         Helper.prototype.getRelated = function () {
             return this.manifest.getRelated();
         };
-        Helper.prototype.getResources = function () {
-            var element = this.getCurrentElement();
-            return element.getResources();
-        };
         Helper.prototype.getSearchService = function () {
             return this.manifest.getService(manifesto.ServiceProfile.search());
         };
@@ -780,7 +774,8 @@ var Manifold;
             return related['format'] === 'text/html';
         };
         Helper.prototype.hasResources = function () {
-            return this.getResources().length > 0;
+            var canvas = this.getCurrentCanvas();
+            return canvas.getResources().length > 0;
         };
         Helper.prototype.isBottomToTop = function () {
             return this.getViewingDirection().toString() === manifesto.ViewingDirection.bottomToTop().toString();

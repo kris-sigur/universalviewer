@@ -1,11 +1,11 @@
-// manifesto v2.1.3 https://github.com/viewdir/manifesto
+// manifesto v2.1.9 https://github.com/viewdir/manifesto
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.manifesto = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
 ///<reference path="../node_modules/typescript/lib/lib.es6.d.ts"/>   
 
 var Manifesto;
 (function (Manifesto) {
-    var StringValue = (function () {
+    var StringValue = /** @class */ (function () {
         function StringValue(value) {
             this.value = "";
             if (value) {
@@ -32,7 +32,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var AnnotationMotivation = (function (_super) {
+    var AnnotationMotivation = /** @class */ (function (_super) {
         __extends(AnnotationMotivation, _super);
         function AnnotationMotivation() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -111,54 +111,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var ElementType = (function (_super) {
-        __extends(ElementType, _super);
-        function ElementType() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        // todo: use getters when ES3 target is no longer required.
-        ElementType.prototype.canvas = function () {
-            return new ElementType(ElementType.CANVAS.toString());
-        };
-        ElementType.prototype.document = function () {
-            return new ElementType(ElementType.DOCUMENT.toString());
-        };
-        ElementType.prototype.image = function () {
-            return new ElementType(ElementType.IMAGE.toString());
-        };
-        ElementType.prototype.movingimage = function () {
-            return new ElementType(ElementType.MOVINGIMAGE.toString());
-        };
-        ElementType.prototype.physicalobject = function () {
-            return new ElementType(ElementType.PHYSICALOBJECT.toString());
-        };
-        ElementType.prototype.sound = function () {
-            return new ElementType(ElementType.SOUND.toString());
-        };
-        ElementType.CANVAS = new ElementType("sc:canvas");
-        ElementType.DOCUMENT = new ElementType("foaf:document");
-        ElementType.IMAGE = new ElementType("dcTypes:image");
-        ElementType.MOVINGIMAGE = new ElementType("dctypes:movingimage");
-        ElementType.PHYSICALOBJECT = new ElementType("dctypes:physicalobject");
-        ElementType.SOUND = new ElementType("dctypes:sound");
-        return ElementType;
-    }(Manifesto.StringValue));
-    Manifesto.ElementType = ElementType;
-})(Manifesto || (Manifesto = {}));
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var Manifesto;
-(function (Manifesto) {
-    var IIIFResourceType = (function (_super) {
+    var IIIFResourceType = /** @class */ (function (_super) {
         __extends(IIIFResourceType, _super);
         function IIIFResourceType() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -182,12 +135,12 @@ var Manifesto;
         IIIFResourceType.prototype.sequence = function () {
             return new IIIFResourceType(IIIFResourceType.SEQUENCE.toString());
         };
-        IIIFResourceType.ANNOTATION = new IIIFResourceType("oa:annotation");
-        IIIFResourceType.CANVAS = new IIIFResourceType("sc:canvas");
-        IIIFResourceType.COLLECTION = new IIIFResourceType("sc:collection");
-        IIIFResourceType.MANIFEST = new IIIFResourceType("sc:manifest");
-        IIIFResourceType.RANGE = new IIIFResourceType("sc:range");
-        IIIFResourceType.SEQUENCE = new IIIFResourceType("sc:sequence");
+        IIIFResourceType.ANNOTATION = new IIIFResourceType("annotation");
+        IIIFResourceType.CANVAS = new IIIFResourceType("canvas");
+        IIIFResourceType.COLLECTION = new IIIFResourceType("collection");
+        IIIFResourceType.MANIFEST = new IIIFResourceType("manifest");
+        IIIFResourceType.RANGE = new IIIFResourceType("range");
+        IIIFResourceType.SEQUENCE = new IIIFResourceType("sequence");
         return IIIFResourceType;
     }(Manifesto.StringValue));
     Manifesto.IIIFResourceType = IIIFResourceType;
@@ -205,7 +158,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var ManifestType = (function (_super) {
+    var ManifestType = /** @class */ (function (_super) {
         __extends(ManifestType, _super);
         function ManifestType() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -240,7 +193,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var RenderingFormat = (function (_super) {
+    var RenderingFormat = /** @class */ (function (_super) {
         __extends(RenderingFormat, _super);
         function RenderingFormat() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -275,7 +228,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var MediaType = (function (_super) {
+    var MediaType = /** @class */ (function (_super) {
         __extends(MediaType, _super);
         function MediaType() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -318,16 +271,44 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var ResourceType = (function (_super) {
+    var ResourceType = /** @class */ (function (_super) {
         __extends(ResourceType, _super);
         function ResourceType() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
         // todo: use getters when ES3 target is no longer required.
+        ResourceType.prototype.canvas = function () {
+            return new ResourceType(ResourceType.CANVAS.toString());
+        };
+        ResourceType.prototype.choice = function () {
+            return new ResourceType(ResourceType.CHOICE.toString());
+        };
+        ResourceType.prototype.document = function () {
+            return new ResourceType(ResourceType.DOCUMENT.toString());
+        };
         ResourceType.prototype.image = function () {
             return new ResourceType(ResourceType.IMAGE.toString());
         };
-        ResourceType.IMAGE = new ResourceType("dctypes:image");
+        ResourceType.prototype.movingimage = function () {
+            return new ResourceType(ResourceType.MOVINGIMAGE.toString());
+        };
+        ResourceType.prototype.physicalobject = function () {
+            return new ResourceType(ResourceType.PHYSICALOBJECT.toString());
+        };
+        ResourceType.prototype.sound = function () {
+            return new ResourceType(ResourceType.SOUND.toString());
+        };
+        ResourceType.prototype.text = function () {
+            return new ResourceType(ResourceType.TEXT.toString());
+        };
+        ResourceType.CANVAS = new ResourceType("canvas");
+        ResourceType.CHOICE = new ResourceType("choice");
+        ResourceType.DOCUMENT = new ResourceType("document");
+        ResourceType.IMAGE = new ResourceType("image");
+        ResourceType.MOVINGIMAGE = new ResourceType("movingimage");
+        ResourceType.PHYSICALOBJECT = new ResourceType("physicalobject");
+        ResourceType.SOUND = new ResourceType("sound");
+        ResourceType.TEXT = new ResourceType("textualbody");
         return ResourceType;
     }(Manifesto.StringValue));
     Manifesto.ResourceType = ResourceType;
@@ -345,7 +326,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var ServiceProfile = (function (_super) {
+    var ServiceProfile = /** @class */ (function (_super) {
         __extends(ServiceProfile, _super);
         function ServiceProfile() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -509,7 +490,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var ViewingDirection = (function (_super) {
+    var ViewingDirection = /** @class */ (function (_super) {
         __extends(ViewingDirection, _super);
         function ViewingDirection() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -548,7 +529,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var ViewingHint = (function (_super) {
+    var ViewingHint = /** @class */ (function (_super) {
         __extends(ViewingHint, _super);
         function ViewingHint() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -585,7 +566,7 @@ var Manifesto;
 
 var Manifesto;
 (function (Manifesto) {
-    var JSONLDResource = (function () {
+    var JSONLDResource = /** @class */ (function () {
         function JSONLDResource(jsonld) {
             this.__jsonld = jsonld;
             this.context = this.getProperty('context');
@@ -619,7 +600,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var ManifestResource = (function (_super) {
+    var ManifestResource = /** @class */ (function (_super) {
         __extends(ManifestResource, _super);
         function ManifestResource(jsonld, options) {
             var _this = _super.call(this, jsonld) || this;
@@ -627,7 +608,7 @@ var Manifesto;
             return _this;
         }
         ManifestResource.prototype.getIIIFResourceType = function () {
-            return new Manifesto.IIIFResourceType(this.getProperty('@type'));
+            return new Manifesto.IIIFResourceType(Manifesto.Utils.normaliseType(this.getProperty('type')));
         };
         ManifestResource.prototype.getLabel = function () {
             return Manifesto.TranslationCollection.parse(this.getProperty('label'), this.options.locale);
@@ -723,12 +704,19 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var Element = (function (_super) {
-        __extends(Element, _super);
-        function Element(jsonld, options) {
+    var Resource = /** @class */ (function (_super) {
+        __extends(Resource, _super);
+        function Resource(jsonld, options) {
             return _super.call(this, jsonld, options) || this;
         }
-        Element.prototype.getResources = function () {
+        Resource.prototype.getFormat = function () {
+            var format = this.getProperty('format');
+            if (format) {
+                return new Manifesto.MediaType(format.toLowerCase());
+            }
+            return null;
+        };
+        Resource.prototype.getResources = function () {
             var resources = [];
             if (!this.__jsonld.resources)
                 return resources;
@@ -739,12 +727,34 @@ var Manifesto;
             }
             return resources;
         };
-        Element.prototype.getType = function () {
-            return new Manifesto.ElementType(this.getProperty('type'));
+        Resource.prototype.getType = function () {
+            var type = this.getProperty('type');
+            if (type) {
+                return new Manifesto.ResourceType(Manifesto.Utils.normaliseType(type));
+            }
+            return null;
         };
-        return Element;
+        Resource.prototype.getWidth = function () {
+            return this.getProperty('width');
+        };
+        Resource.prototype.getHeight = function () {
+            return this.getProperty('height');
+        };
+        Resource.prototype.getMaxWidth = function () {
+            return this.getProperty('maxWidth');
+        };
+        Resource.prototype.getMaxHeight = function () {
+            var maxHeight = this.getProperty('maxHeight');
+            // if a maxHeight hasn't been specified, default to maxWidth.
+            // maxWidth in essence becomes maxEdge
+            if (!maxHeight) {
+                return this.getMaxWidth();
+            }
+            return null;
+        };
+        return Resource;
     }(Manifesto.ManifestResource));
-    Manifesto.Element = Element;
+    Manifesto.Resource = Resource;
 })(Manifesto || (Manifesto = {}));
 
 var __extends = (this && this.__extends) || (function () {
@@ -759,7 +769,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var Canvas = (function (_super) {
+    var Canvas = /** @class */ (function (_super) {
         __extends(Canvas, _super);
         function Canvas(jsonld, options) {
             return _super.call(this, jsonld, options) || this;
@@ -847,6 +857,9 @@ var Manifesto;
             }
             return content;
         };
+        Canvas.prototype.getDuration = function () {
+            return this.getProperty('duration');
+        };
         Canvas.prototype.getImages = function () {
             var images = [];
             if (!this.__jsonld.images)
@@ -882,7 +895,7 @@ var Manifesto;
         //
         //            if (!_endsWith(id, '/')) {
         //                id += '/';
-        //            }
+        //            } 
         //
         //            uri = id + 'full/' + width + ',/0/' + Utils.getImageQuality(service.getProfile()) + '.jpg';
         //        }
@@ -900,7 +913,7 @@ var Manifesto;
             return this.getProperty('height');
         };
         return Canvas;
-    }(Manifesto.Element));
+    }(Manifesto.Resource));
     Manifesto.Canvas = Canvas;
 })(Manifesto || (Manifesto = {}));
 
@@ -916,7 +929,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var IIIFResource = (function (_super) {
+    var IIIFResource = /** @class */ (function (_super) {
         __extends(IIIFResource, _super);
         function IIIFResource(jsonld, options) {
             var _this = _super.call(this, jsonld, options) || this;
@@ -946,12 +959,7 @@ var Manifesto;
             return [];
         };
         IIIFResource.prototype.getIIIFResourceType = function () {
-            var type = this.getProperty('type');
-            if (type) {
-                return new Manifesto.IIIFResourceType(type);
-            }
-            type = this.getProperty('@type');
-            return new Manifesto.IIIFResourceType(type);
+            return new Manifesto.IIIFResourceType(Manifesto.Utils.normaliseType(this.getProperty('type')));
         };
         IIIFResource.prototype.getLogo = function () {
             var logo = this.getProperty('logo');
@@ -986,19 +994,13 @@ var Manifesto;
             return this.defaultTree;
         };
         IIIFResource.prototype.isCollection = function () {
-            if (this.getIIIFResourceType().toString().toLowerCase() === 'collection') {
-                return true;
-            }
-            else if (this.getIIIFResourceType().toString() === Manifesto.IIIFResourceType.COLLECTION.toString()) {
+            if (this.getIIIFResourceType().toString() === Manifesto.IIIFResourceType.COLLECTION.toString()) {
                 return true;
             }
             return false;
         };
         IIIFResource.prototype.isManifest = function () {
-            if (this.getIIIFResourceType().toString().toLowerCase() === 'manifest') {
-                return true;
-            }
-            else if (this.getIIIFResourceType().toString() === Manifesto.IIIFResourceType.MANIFEST.toString()) {
+            if (this.getIIIFResourceType().toString() === Manifesto.IIIFResourceType.MANIFEST.toString()) {
                 return true;
             }
             return false;
@@ -1043,7 +1045,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var Manifest = (function (_super) {
+    var Manifest = /** @class */ (function (_super) {
         __extends(Manifest, _super);
         function Manifest(jsonld, options) {
             var _this = _super.call(this, jsonld, options) || this;
@@ -1062,7 +1064,7 @@ var Manifesto;
         }
         Manifest.prototype.getDefaultTree = function () {
             _super.prototype.getDefaultTree.call(this);
-            this.defaultTree.data.type = Manifesto.TreeNodeType.MANIFEST.toString();
+            this.defaultTree.data.type = Manifesto.Utils.normaliseType(Manifesto.TreeNodeType.MANIFEST.toString());
             if (!this.isLoaded) {
                 return this.defaultTree;
             }
@@ -1099,7 +1101,7 @@ var Manifesto;
             if (this.__jsonld.structures && this.__jsonld.structures.length) {
                 for (var i = 0; i < this.__jsonld.structures.length; i++) {
                     var r = this.__jsonld.structures[i];
-                    if (r['@id'] === id) {
+                    if (r['@id'] === id || r.id === id) {
                         return r;
                     }
                 }
@@ -1131,25 +1133,26 @@ var Manifesto;
             else {
                 parentRange.members.push(range);
             }
-            if (r.ranges) {
-                for (var i = 0; i < r.ranges.length; i++) {
-                    this._parseRanges(r.ranges[i], path + '/' + i, range);
+            if (r.members) {
+                for (var i = 0; i < r.members.length; i++) {
+                    var child = r.members[i];
+                    // todo: use constants
+                    if (child['@type'] && child['@type'].toLowerCase() === 'sc:range' || child['type'] && child['type'].toLowerCase() === 'range') {
+                        this._parseRanges(child, path + '/' + i, range);
+                    }
+                    else if (child['@type'] && child['@type'].toLowerCase() === 'sc:canvas' || child['type'] && child['type'].toLowerCase() === 'canvas') {
+                        // store the ids on the __jsonld object to be used by Range.getCanvasIds()
+                        if (!range.canvases) {
+                            range.canvases = [];
+                        }
+                        var id_1 = child['@id'] || child.id;
+                        range.canvases.push(id_1);
+                    }
                 }
             }
-            if (r.members) {
-                var _loop_1 = function (i) {
-                    var child = r.members[i];
-                    // only add to members if not already parsed from backwards-compatible ranges/canvases arrays
-                    if (r.members.en().where(function (m) { return m.id === child.id; }).first()) {
-                        return "continue";
-                    }
-                    if (child['@type'].toLowerCase() === 'sc:range') {
-                        this_1._parseRanges(child, path + '/' + i, range);
-                    }
-                };
-                var this_1 = this;
-                for (var i = 0; i < r.members.length; i++) {
-                    _loop_1(i);
+            else if (r.ranges) {
+                for (var i = 0; i < r.ranges.length; i++) {
+                    this._parseRanges(r.ranges[i], path + '/' + i, range);
                 }
             }
         };
@@ -1258,7 +1261,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var Collection = (function (_super) {
+    var Collection = /** @class */ (function (_super) {
         __extends(Collection, _super);
         function Collection(jsonld, options) {
             var _this = _super.call(this, jsonld, options) || this;
@@ -1305,7 +1308,7 @@ var Manifesto;
          */
         Collection.prototype.getDefaultTree = function () {
             _super.prototype.getDefaultTree.call(this);
-            this.defaultTree.data.type = Manifesto.TreeNodeType.COLLECTION.toString();
+            this.defaultTree.data.type = Manifesto.Utils.normaliseType(Manifesto.TreeNodeType.COLLECTION.toString());
             this._parseManifests(this);
             this._parseCollections(this);
             Manifesto.Utils.generateTreeNodeIds(this.defaultTree);
@@ -1319,7 +1322,7 @@ var Manifesto;
                     tree.label = manifest.parentLabel || Manifesto.TranslationCollection.getValue(manifest.getLabel(), this.options.locale) || 'manifest ' + (i + 1);
                     tree.navDate = manifest.getNavDate();
                     tree.data.id = manifest.id;
-                    tree.data.type = Manifesto.TreeNodeType.MANIFEST.toString();
+                    tree.data.type = Manifesto.Utils.normaliseType(Manifesto.TreeNodeType.MANIFEST.toString());
                     parentCollection.defaultTree.addNode(tree);
                 }
             }
@@ -1332,7 +1335,7 @@ var Manifesto;
                     tree.label = collection.parentLabel || Manifesto.TranslationCollection.getValue(collection.getLabel(), this.options.locale) || 'collection ' + (i + 1);
                     tree.navDate = collection.getNavDate();
                     tree.data.id = collection.id;
-                    tree.data.type = Manifesto.TreeNodeType.COLLECTION.toString();
+                    tree.data.type = Manifesto.Utils.normaliseType(Manifesto.TreeNodeType.COLLECTION.toString());
                     parentCollection.defaultTree.addNode(tree);
                     this._parseCollections(collection);
                 }
@@ -1355,12 +1358,12 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var Range = (function (_super) {
+    var Range = /** @class */ (function (_super) {
         __extends(Range, _super);
         function Range(jsonld, options) {
             var _this = _super.call(this, jsonld, options) || this;
-            _this._canvases = null;
             _this._ranges = null;
+            _this.canvases = null;
             _this.members = [];
             return _this;
         }
@@ -1368,14 +1371,17 @@ var Manifesto;
             if (this.__jsonld.canvases) {
                 return this.__jsonld.canvases;
             }
+            else if (this.canvases) {
+                return this.canvases;
+            }
             return [];
         };
-        Range.prototype.getCanvases = function () {
-            if (this._canvases) {
-                return this._canvases;
-            }
-            return this._canvases = this.members.en().where(function (m) { return m.isCanvas(); }).toArray();
-        };
+        // getCanvases(): ICanvas[] {
+        //     if (this._canvases) {
+        //         return this._canvases;
+        //     }
+        //     return this._canvases = <ICanvas[]>this.members.en().where(m => m.isCanvas()).toArray();
+        // }
         Range.prototype.getRanges = function () {
             if (this._ranges) {
                 return this._ranges;
@@ -1412,7 +1418,7 @@ var Manifesto;
         Range.prototype._parseTreeNode = function (node, range) {
             node.label = Manifesto.TranslationCollection.getValue(range.getLabel(), this.options.locale);
             node.data = range;
-            node.data.type = Manifesto.TreeNodeType.RANGE.toString();
+            node.data.type = Manifesto.Utils.normaliseType(Manifesto.TreeNodeType.RANGE.toString());
             range.treeNode = node;
             var ranges = range.getRanges();
             if (ranges && ranges.length) {
@@ -1441,7 +1447,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var Rendering = (function (_super) {
+    var Rendering = /** @class */ (function (_super) {
         __extends(Rendering, _super);
         function Rendering(jsonld, options) {
             return _super.call(this, jsonld, options) || this;
@@ -1466,7 +1472,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var Sequence = (function (_super) {
+    var Sequence = /** @class */ (function (_super) {
         __extends(Sequence, _super);
         function Sequence(jsonld, options) {
             var _this = _super.call(this, jsonld, options) || this;
@@ -1492,7 +1498,9 @@ var Manifesto;
         Sequence.prototype.getCanvasById = function (id) {
             for (var i = 0; i < this.getTotalCanvases(); i++) {
                 var canvas = this.getCanvasByIndex(i);
-                if (canvas.id === id) {
+                // normalise canvas id
+                var canvasId = Manifesto.Utils.normaliseUrl(canvas.id);
+                if (Manifesto.Utils.normaliseUrl(id) === canvasId) {
                     return canvas;
                 }
             }
@@ -1685,7 +1693,7 @@ var Manifesto;
 
 var Manifesto;
 (function (Manifesto) {
-    var Deserialiser = (function () {
+    var Deserialiser = /** @class */ (function () {
         function Deserialiser() {
         }
         Deserialiser.parse = function (manifest, options) {
@@ -1816,7 +1824,7 @@ var Manifesto;
         return Deserialiser;
     }());
     Manifesto.Deserialiser = Deserialiser;
-    var Serialiser = (function () {
+    var Serialiser = /** @class */ (function () {
         function Serialiser() {
         }
         Serialiser.serialise = function (manifest) {
@@ -1840,7 +1848,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var Service = (function (_super) {
+    var Service = /** @class */ (function (_super) {
         __extends(Service, _super);
         function Service(jsonld, options) {
             return _super.call(this, jsonld, options) || this;
@@ -1889,7 +1897,7 @@ var Manifesto;
 
 var Manifesto;
 (function (Manifesto) {
-    var Thumb = (function () {
+    var Thumb = /** @class */ (function () {
         function Thumb(width, canvas) {
             this.data = canvas;
             this.index = canvas.index;
@@ -1912,7 +1920,7 @@ var Manifesto;
 
 var Manifesto;
 (function (Manifesto) {
-    var TreeNode = (function () {
+    var TreeNode = /** @class */ (function () {
         function TreeNode(label, data) {
             this.label = label;
             this.data = data || {};
@@ -1923,13 +1931,13 @@ var Manifesto;
             node.parentNode = this;
         };
         TreeNode.prototype.isCollection = function () {
-            return this.data.type === Manifesto.TreeNodeType.COLLECTION.toString();
+            return this.data.type === Manifesto.Utils.normaliseType(Manifesto.TreeNodeType.COLLECTION.toString());
         };
         TreeNode.prototype.isManifest = function () {
-            return this.data.type === Manifesto.TreeNodeType.MANIFEST.toString();
+            return this.data.type === Manifesto.Utils.normaliseType(Manifesto.TreeNodeType.MANIFEST.toString());
         };
         TreeNode.prototype.isRange = function () {
-            return this.data.type === Manifesto.TreeNodeType.RANGE.toString();
+            return this.data.type === Manifesto.Utils.normaliseType(Manifesto.TreeNodeType.RANGE.toString());
         };
         return TreeNode;
     }());
@@ -1948,7 +1956,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var TreeNodeType = (function (_super) {
+    var TreeNodeType = /** @class */ (function (_super) {
         __extends(TreeNodeType, _super);
         function TreeNodeType() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -1963,9 +1971,9 @@ var Manifesto;
         TreeNodeType.prototype.range = function () {
             return new TreeNodeType(TreeNodeType.RANGE.toString());
         };
-        TreeNodeType.COLLECTION = new TreeNodeType("sc:collection");
-        TreeNodeType.MANIFEST = new TreeNodeType("sc:manifest");
-        TreeNodeType.RANGE = new TreeNodeType("sc:range");
+        TreeNodeType.COLLECTION = new TreeNodeType("collection");
+        TreeNodeType.MANIFEST = new TreeNodeType("manifest");
+        TreeNodeType.RANGE = new TreeNodeType("range");
         return TreeNodeType;
     }(Manifesto.StringValue));
     Manifesto.TreeNodeType = TreeNodeType;
@@ -2011,7 +2019,7 @@ var https = require("https");
 var url = require("url");
 var Manifesto;
 (function (Manifesto) {
-    var Utils = (function () {
+    var Utils = /** @class */ (function () {
         function Utils() {
         }
         Utils.getMediaType = function (type) {
@@ -2082,10 +2090,23 @@ var Manifesto;
                 Utils.generateTreeNodeIds(n, i);
             }
         };
+        Utils.normaliseType = function (type) {
+            type = type.toLowerCase();
+            if (type.indexOf(':') !== -1) {
+                var split = type.split(':');
+                return split[1];
+            }
+            return type;
+        };
+        Utils.normaliseUrl = function (url) {
+            url = url.substr(url.indexOf('://'));
+            if (url.indexOf('#') !== -1) {
+                url = url.split('#')[0];
+            }
+            return url;
+        };
         Utils.normalisedUrlsMatch = function (url1, url2) {
-            var url1norm = url1.substr(url1.indexOf('://'));
-            var url2norm = url1.substr(url1.indexOf('://'));
-            return url1norm === url2norm;
+            return Utils.normaliseUrl(url1) === Utils.normaliseUrl(url2);
         };
         Utils.isImageProfile = function (profile) {
             if (Utils.normalisedUrlsMatch(profile.toString(), Manifesto.ServiceProfile.STANFORDIIIFIMAGECOMPLIANCE0.toString()) ||
@@ -2194,10 +2215,10 @@ var Manifesto;
                 request.end();
             });
         };
-        Utils.loadExternalResourcesAuth1 = function (resources, openContentProviderInteraction, openTokenService, userInteractedWithContentProvider, getContentProviderInteraction, handleMovedTemporarily, showOutOfOptionsMessages) {
+        Utils.loadExternalResourcesAuth1 = function (resources, openContentProviderInteraction, openTokenService, getStoredAccessToken, userInteractedWithContentProvider, getContentProviderInteraction, handleMovedTemporarily, showOutOfOptionsMessages) {
             return new Promise(function (resolve, reject) {
                 var promises = resources.map(function (resource) {
-                    return Utils.loadExternalResourceAuth1(resource, openContentProviderInteraction, openTokenService, userInteractedWithContentProvider, getContentProviderInteraction, handleMovedTemporarily, showOutOfOptionsMessages);
+                    return Utils.loadExternalResourceAuth1(resource, openContentProviderInteraction, openTokenService, getStoredAccessToken, userInteractedWithContentProvider, getContentProviderInteraction, handleMovedTemporarily, showOutOfOptionsMessages);
                 });
                 Promise.all(promises)
                     .then(function () {
@@ -2207,19 +2228,41 @@ var Manifesto;
                 });
             });
         };
-        Utils.loadExternalResourceAuth1 = function (resource, openContentProviderInteraction, openTokenService, userInteractedWithContentProvider, getContentProviderInteraction, handleMovedTemporarily, showOutOfOptionsMessages) {
+        Utils.loadExternalResourceAuth1 = function (resource, openContentProviderInteraction, openTokenService, getStoredAccessToken, userInteractedWithContentProvider, getContentProviderInteraction, handleMovedTemporarily, showOutOfOptionsMessages) {
             return __awaiter(this, void 0, void 0, function () {
+                var storedAccessToken;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, resource.getData()];
+                        case 0: return [4 /*yield*/, getStoredAccessToken(resource)];
                         case 1:
-                            _a.sent();
-                            if (!(resource.status === HTTPStatusCode.MOVED_TEMPORARILY || resource.status === HTTPStatusCode.UNAUTHORIZED)) return [3 /*break*/, 3];
-                            return [4 /*yield*/, Utils.doAuthChain(resource, openContentProviderInteraction, openTokenService, userInteractedWithContentProvider, getContentProviderInteraction, handleMovedTemporarily, showOutOfOptionsMessages)];
+                            storedAccessToken = _a.sent();
+                            if (!storedAccessToken) return [3 /*break*/, 6];
+                            return [4 /*yield*/, resource.getData(storedAccessToken)];
                         case 2:
                             _a.sent();
-                            _a.label = 3;
-                        case 3:
+                            if (!(resource.status === HTTPStatusCode.OK)) return [3 /*break*/, 3];
+                            return [2 /*return*/, resource];
+                        case 3: 
+                        // the stored token is no good for this resource
+                        return [4 /*yield*/, Utils.doAuthChain(resource, openContentProviderInteraction, openTokenService, userInteractedWithContentProvider, getContentProviderInteraction, handleMovedTemporarily, showOutOfOptionsMessages)];
+                        case 4:
+                            // the stored token is no good for this resource
+                            _a.sent();
+                            _a.label = 5;
+                        case 5:
+                            if (resource.status === HTTPStatusCode.OK || resource.status === HTTPStatusCode.MOVED_TEMPORARILY) {
+                                return [2 /*return*/, resource];
+                            }
+                            throw Utils.createAuthorizationFailedError();
+                        case 6: return [4 /*yield*/, resource.getData()];
+                        case 7:
+                            _a.sent();
+                            if (!(resource.status === HTTPStatusCode.MOVED_TEMPORARILY || resource.status === HTTPStatusCode.UNAUTHORIZED)) return [3 /*break*/, 9];
+                            return [4 /*yield*/, Utils.doAuthChain(resource, openContentProviderInteraction, openTokenService, userInteractedWithContentProvider, getContentProviderInteraction, handleMovedTemporarily, showOutOfOptionsMessages)];
+                        case 8:
+                            _a.sent();
+                            _a.label = 9;
+                        case 9:
                             if (resource.status === HTTPStatusCode.OK || resource.status === HTTPStatusCode.MOVED_TEMPORARILY) {
                                 return [2 /*return*/, resource];
                             }
@@ -2348,7 +2391,7 @@ var Manifesto;
                         case 0:
                             tokenService = authService.getService(Manifesto.ServiceProfile.AUTH1TOKEN.toString());
                             if (!tokenService) return [3 /*break*/, 3];
-                            return [4 /*yield*/, openTokenService(tokenService)];
+                            return [4 /*yield*/, openTokenService(resource, tokenService)];
                         case 1:
                             tokenMessage = _a.sent();
                             if (!(tokenMessage && tokenMessage.accessToken)) return [3 /*break*/, 3];
@@ -2648,7 +2691,7 @@ var Manifesto;
 
 var Manifesto;
 (function (Manifesto) {
-    var MetadataItem = (function () {
+    var MetadataItem = /** @class */ (function () {
         function MetadataItem(defaultLocale) {
             this.defaultLocale = defaultLocale;
         }
@@ -2698,7 +2741,7 @@ var Manifesto;
 
 var Manifesto;
 (function (Manifesto) {
-    var Translation = (function () {
+    var Translation = /** @class */ (function () {
         function Translation(value, locale) {
             this.value = value;
             this.locale = locale;
@@ -2720,7 +2763,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var TranslationCollection = (function (_super) {
+    var TranslationCollection = /** @class */ (function (_super) {
         __extends(TranslationCollection, _super);
         function TranslationCollection() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -2777,7 +2820,7 @@ var Manifesto;
 
 var Manifesto;
 (function (Manifesto) {
-    var Size = (function () {
+    var Size = /** @class */ (function () {
         function Size(width, height) {
             this.width = width;
             this.height = height;
@@ -2789,7 +2832,6 @@ var Manifesto;
 
 global.manifesto = global.Manifesto = module.exports = {
     AnnotationMotivation: new Manifesto.AnnotationMotivation(),
-    ElementType: new Manifesto.ElementType(),
     IIIFResourceType: new Manifesto.IIIFResourceType(),
     ManifestType: new Manifesto.ManifestType(),
     MediaType: new Manifesto.MediaType(),
@@ -2831,7 +2873,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var Annotation = (function (_super) {
+    var Annotation = /** @class */ (function (_super) {
         __extends(Annotation, _super);
         function Annotation(jsonld, options) {
             return _super.call(this, jsonld, options) || this;
@@ -2839,8 +2881,23 @@ var Manifesto;
         Annotation.prototype.getBody = function () {
             var bodies = [];
             var body = this.getProperty('body');
+            // todo: make this a generic "property that can be an object or array enumerator" util
             if (body) {
-                if (body.items) {
+                if (Array.isArray(body)) {
+                    for (var i = 0; i < body.length; i++) {
+                        var b = body[i];
+                        if (b.items) {
+                            for (var i_1 = 0; i_1 < b.items.length; i_1++) {
+                                var c = b.items[i_1];
+                                bodies.push(new Manifesto.AnnotationBody(c, this.options));
+                            }
+                        }
+                        else {
+                            bodies.push(new Manifesto.AnnotationBody(b, this.options));
+                        }
+                    }
+                }
+                else if (body.items) {
                     for (var i = 0; i < body.items.length; i++) {
                         var b = body.items[i];
                         bodies.push(new Manifesto.AnnotationBody(b, this.options));
@@ -2886,7 +2943,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var AnnotationBody = (function (_super) {
+    var AnnotationBody = /** @class */ (function (_super) {
         __extends(AnnotationBody, _super);
         function AnnotationBody(jsonld, options) {
             return _super.call(this, jsonld, options) || this;
@@ -2901,7 +2958,7 @@ var Manifesto;
         AnnotationBody.prototype.getType = function () {
             var type = this.getProperty('type');
             if (type) {
-                return new Manifesto.ResourceType(type.toLowerCase());
+                return new Manifesto.ResourceType(Manifesto.Utils.normaliseType(this.getProperty('type')));
             }
             return null;
         };
@@ -2922,7 +2979,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manifesto;
 (function (Manifesto) {
-    var AnnotationPage = (function (_super) {
+    var AnnotationPage = /** @class */ (function (_super) {
         __extends(AnnotationPage, _super);
         function AnnotationPage(jsonld, options) {
             return _super.call(this, jsonld, options) || this;
@@ -2953,61 +3010,6 @@ var Manifesto;
 
 
 
-
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var Manifesto;
-(function (Manifesto) {
-    var Resource = (function (_super) {
-        __extends(Resource, _super);
-        function Resource(jsonld, options) {
-            return _super.call(this, jsonld, options) || this;
-        }
-        Resource.prototype.getFormat = function () {
-            var format = this.getProperty('format');
-            if (format) {
-                return new Manifesto.MediaType(format.toLowerCase());
-            }
-            return null;
-        };
-        Resource.prototype.getType = function () {
-            var type = this.getProperty('type');
-            if (type) {
-                return new Manifesto.ResourceType(type.toLowerCase());
-            }
-            return null;
-        };
-        Resource.prototype.getWidth = function () {
-            return this.getProperty('width');
-        };
-        Resource.prototype.getHeight = function () {
-            return this.getProperty('height');
-        };
-        Resource.prototype.getMaxWidth = function () {
-            return this.getProperty('maxWidth');
-        };
-        Resource.prototype.getMaxHeight = function () {
-            var maxHeight = this.getProperty('maxHeight');
-            // if a maxHeight hasn't been specified, default to maxWidth.
-            // maxWidth in essence becomes maxEdge
-            if (!maxHeight) {
-                return this.getMaxWidth();
-            }
-            return null;
-        };
-        return Resource;
-    }(Manifesto.ManifestResource));
-    Manifesto.Resource = Resource;
-})(Manifesto || (Manifesto = {}));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"http":30,"https":8,"url":35}],2:[function(require,module,exports){

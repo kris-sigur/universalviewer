@@ -159,17 +159,15 @@ export class BaseExtension implements IExtension {
                     $.publish(event);
                 }
             });
-
-            $.subscribe(BaseEvents.EXIT_FULLSCREEN, () => {
-                if (this.isOverlayActive()) {
-                    $.publish(BaseEvents.ESCAPE);
-                }
-
-                $.publish(BaseEvents.ESCAPE);
-                $.publish(BaseEvents.RESIZE);
-            });
-
         }
+
+        $.subscribe(BaseEvents.EXIT_FULLSCREEN, () => {
+            if (this.isOverlayActive()) {
+                $.publish(BaseEvents.ESCAPE);
+            }
+            $.publish(BaseEvents.ESCAPE);
+            $.publish(BaseEvents.RESIZE);
+        });
 
         this.$element.append('<a href="/" id="top"></a>');
         this.$element.append('<iframe id="commsFrame" style="display:none"></iframe>');
@@ -204,6 +202,8 @@ export class BaseExtension implements IExtension {
 
         $.subscribe(BaseEvents.CANVAS_INDEX_CHANGED, (e: any, canvasIndex: number) => {
             this.data.canvasIndex = canvasIndex;
+            this.lastCanvasIndex = this.helper.canvasIndex;
+            this.helper.canvasIndex = canvasIndex;
             this.fire(BaseEvents.CANVAS_INDEX_CHANGED, this.data.canvasIndex);
         });
 
@@ -719,16 +719,19 @@ export class BaseExtension implements IExtension {
 
     private _updateMetric(): void {
 
-        for (let i = 0; i < this.metrics.length; i++) {
-            const metric: Metric = this.metrics[i];
+        setTimeout(() => {
+            for (let i = 0; i < this.metrics.length; i++) {
+                const metric: Metric = this.metrics[i];
 
-            if (this.width() > metric.minWidth && this.width() <= metric.maxWidth) {
-                if (this.metric !== metric.type) {
-                    this.metric = metric.type;
-                    $.publish(BaseEvents.METRIC_CHANGED);
+                if (this.width() > metric.minWidth && this.width() <= metric.maxWidth) {
+                    if (this.metric !== metric.type) {
+                        this.metric = metric.type;
+
+                        $.publish(BaseEvents.METRIC_CHANGED);
+                    }
                 }
             }
-        }
+        }, 1);
     }
 
     resize(): void {
@@ -982,9 +985,13 @@ export class BaseExtension implements IExtension {
             const annotation: Manifesto.IAnnotation = annotations[0];
             return annotation.getBody();
         } else {
+            // legacy IxIF compatibility
             const body: Manifesto.IAnnotationBody = <any>{
                 id: canvas.id,
-                type: canvas.getType()
+                type: canvas.getType(),
+                getFormat: function() {
+                    return ''
+                }
             }
 
             return [body];
@@ -996,11 +1003,8 @@ export class BaseExtension implements IExtension {
 
         if (this.helper.isCanvasIndexOutOfRange(canvasIndex)) {
             this.showMessage(this.data.config.content.canvasIndexOutOfRange);
-            canvasIndex = 0;
+            return;
         }
-
-        this.lastCanvasIndex = this.helper.canvasIndex;
-        this.helper.canvasIndex = canvasIndex;
 
         $.publish(BaseEvents.OPEN_EXTERNAL_RESOURCE);
     }
@@ -1033,7 +1037,7 @@ export class BaseExtension implements IExtension {
     viewManifest(manifest: Manifesto.IManifest): void {
         const data: IUVData = <IUVData>{};
         data.iiifResourceUri = this.helper.iiifResourceUri;
-        data.collectionIndex = <number>this.helper.getCollectionIndex(manifest);
+        data.collectionIndex = <number>this.helper.getCollectionIndex(manifest) || 0;
         data.manifestIndex = <number>manifest.index;
         data.sequenceIndex = 0;
         data.canvasIndex = 0;
